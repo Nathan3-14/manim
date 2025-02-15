@@ -45,7 +45,6 @@ class Parabola(Scene):
         self.play(Write(solve_line))
         self.wait(1)
         self.play(Create(solve_solution_a), Create(solve_solution_b))
-        self.wait(1)
         self.play(Create(solve_circle_a), Create(solve_circle_b), FadeOut(solve_solution_a), FadeOut(solve_solution_b))
         self.wait(2)
         self.play(FadeOut(given_parabola), FadeOut(solve_line))
@@ -66,24 +65,16 @@ class Parabola(Scene):
             r"-2x^{2}+\ x-2",
             tex_to_color_map={
                 r"x^{2}-2x-3": RED,
-                r"-2x^{2}+\ x-2": BLUE
+                r"2x^{2}+\ x-2": BLUE
             }
         )
+        divide_remark = MathTex(r"\div 2")
         calculation_b = MathTex(
-            r"x^{2}-2x-3 \\",
-            r"-2x^{2}+\ x-2",
-            r"\div 2",
-            tex_to_color_map={
-                r"x^{2}-2x-3": RED,
-                r"-2x^{2}+\ x-2": BLUE
-            }
-        )
-        calculation_c = MathTex(
             r"x^{2}-2x-3 \\",
             r"-x^{2}+\frac{1}{2}x-1",
             tex_to_color_map={
                 r"x^{2}-2x-3": RED,
-                r"-x^{2}+\frac{1}{2}x-1": BLUE
+                r"x^{2}+\frac{1}{2}x-1": BLUE
             }
         )
         answer = MathTex(
@@ -93,8 +84,8 @@ class Parabola(Scene):
         given_parabola_equation.next_to(self.axes, RIGHT)
         calculation_a.next_to(self.axes, RIGHT)
         calculation_b.next_to(self.axes, RIGHT)
-        calculation_c.next_to(self.axes, RIGHT)
-        answer.next_to(calculation_c, DOWN)
+        divide_remark.next_to(calculation_a, DOWN)
+        answer.next_to(calculation_b, DOWN)
 
         solve_solution_a = DashedLine(self.axes.coords_to_point(-2, 5), self.axes.coords_to_point(-2, 0))
         solve_solution_b = DashedLine(self.axes.coords_to_point(0.5, -3.75), self.axes.coords_to_point(0.5, 0))
@@ -107,23 +98,22 @@ class Parabola(Scene):
         self.wait(2)
         self.play(ReplacementTransform(given_parabola_equation, calculation_a))
         self.wait(1)
-        self.play(ReplacementTransform(calculation_a, calculation_b))
+        self.play(Write(divide_remark))
         self.wait(1)
-        self.play(ReplacementTransform(calculation_b, calculation_c))
+        self.play(ReplacementTransform(calculation_a, calculation_b), FadeOut(divide_remark))
         self.wait(2)
         self.play(Write(answer))
         self.wait(2)
         self.play(Write(solve_line))
         self.wait(1)
         self.play(Create(solve_solution_a), Create(solve_solution_b))
-        self.wait(1)
         self.play(Create(solve_circle_a), Create(solve_circle_b), FadeOut(solve_solution_a), FadeOut(solve_solution_b))
         self.wait(2)
         self.play(FadeOut(given_parabola), FadeOut(solve_line))
         self.wait(1)
         self.play(Write(solve_parabola))
         self.wait(3)
-        self.play(FadeOut(solve_circle_a), FadeOut(solve_circle_b), FadeOut(solve_parabola), FadeOut(calculation_c), FadeOut(answer))
+        self.play(FadeOut(solve_circle_a), FadeOut(solve_circle_b), FadeOut(solve_parabola), FadeOut(calculation_b), FadeOut(answer))
         
     
     def construct(self) -> None:
@@ -139,3 +129,4 @@ class Parabola(Scene):
         self.question_1()
         self.wait(2)
         self.question2()
+        self.wait(2)
