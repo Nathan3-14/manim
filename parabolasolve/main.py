@@ -55,11 +55,10 @@ class Parabola(Scene):
     
     def question2(self) -> None:        
         given_parabola = self.axes.plot(lambda x: (x**2) - 2*(x) - 3, color=RED)
-        # given_parabola_label = axes.get_graph_label(given_parabola, "y=x^2-x-3", x_val=2)
         solve_parabola = self.axes.plot(lambda x: 2*(x**2) + 3*(x) - 2, color=BLUE)
         solve_line = self.axes.plot(lambda x: -3.5 * x - 2, color=GREEN)
         
-        given_parabola_equation = MathTex(r"\ x^{2}-2x-3", color=RED)
+        given_parabola_equation = MathTex(r"\ x^{2}-2x-3", tex_to_color_map={}, color=RED)
         calculation_a = MathTex(
             r"x^{2}-2x-3 \\",
             r"-2x^{2}+\ x-2",
@@ -68,7 +67,7 @@ class Parabola(Scene):
                 r"2x^{2}+\ x-2": BLUE
             }
         )
-        divide_remark = MathTex(r"\div 2")
+        divide_remark = MathTex(r"\div 2", tex_to_color_map={})
         calculation_b = MathTex(
             r"x^{2}-2x-3 \\",
             r"-x^{2}+\frac{1}{2}x-1",
@@ -79,8 +78,10 @@ class Parabola(Scene):
         )
         answer = MathTex(
             r"-\frac{7}{2}x-2",
+            tex_to_color_map={},
             color=GREEN
         )
+        
         given_parabola_equation.next_to(self.axes, RIGHT)
         calculation_a.next_to(self.axes, RIGHT)
         calculation_b.next_to(self.axes, RIGHT)
