@@ -207,6 +207,7 @@ class Parabola(Scene):
                 self.solve_equation.latex(): RED
             }
         )
+        #! - SYMBOL DISAPPEARS!#
         self.solve_equation /= divider
         print(f"[][][][] {(self.solve_equation).latex()}")
         #TODO maybe rewrite a instead TODO#
