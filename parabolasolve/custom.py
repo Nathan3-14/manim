@@ -24,7 +24,18 @@ def check_equation(a: str) -> bool:
     return True
 
 def subtract_equations(a: str, b: str) -> str:
-    return ""
+    if not check_equation(a) or not check_equation(b):
+        return a
+    a_split = re.split(r"(?<!\n)(?=[+-])", a)
+    a_split = re.split(r"(?<!\n)(?=[+-])", a)
+    output = []
+
+    try:
+        a_split[0]
+    except Exception as e:
+        print(e)
+    
+
 
 class Parabola(Scene):
     def parabola_question(self, given_equation: str, solvefor_equation: str) -> None:
@@ -89,7 +100,7 @@ class Parabola(Scene):
         self.wait(2)
 
 if __name__ == "__main__":
-    print(check_equation("1x^2+1x-0")) #t
-    print(check_equation("x+1")) #f
-    print(check_equation("2x^2-x*2")) #f
-    print(check_equation("2x^2-x+1")) #t
+    tgiven_equation = "1x^2-1x-2"
+    tsolve_equation = "1x^2+5x+6"
+    
+    print(subtract_equations(tgiven_equation, tsolve_equation))
