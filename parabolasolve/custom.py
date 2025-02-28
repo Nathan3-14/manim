@@ -1,10 +1,11 @@
 from manim import (
     Scene, Axes, DashedLine, Circle,
     Write, ReplacementTransform, Create, FadeOut,
-    BLUE, RIGHT, LEFT, DOWN, RED, GREEN, 
+    BLUE, RIGHT, LEFT, DOWN, RED, GREEN,
     Tex, MathTex,
     ManimColor, ParametricFunction
 )
+from manim.typing import Vector3D
 import re
 from typing import List
 from fractions import Fraction
@@ -226,7 +227,7 @@ class Parabola(Scene):
             color=GREEN,
             tex_to_color_map={}
         )
-        result.next_to(calculation_a, DOWN)
+        result.next_to(calculation_a, DOWN*2)
         action_remark = MathTex(
             rf"\div {divider}",
             tex_to_color_map={}
@@ -268,4 +269,5 @@ if __name__ == "__main__":
     tgiven_equation = Equation("1x^2+3x+3")
     tsolve_equation = Equation("1x^2+1/2x+2")
     print(tsolve_equation.latex())
+    print(DOWN)
     
